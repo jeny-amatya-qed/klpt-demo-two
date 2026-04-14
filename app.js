@@ -558,7 +558,8 @@ function updateNavigationActive() {
   } else if (state.view.startsWith("foundations-")) {
     document.querySelector(`.vertical-nav-btn[data-nav="foundations"]`)?.classList.add("active");
   } else if (state.view === "using-klpt" || state.view === "learning-domains" || 
-             state.view.startsWith("ld-") || state.view === "observation-support" || state.view === "practice-support") {
+             state.view.startsWith("ld-") || state.view === "observation-support" || 
+             state.view === "practice-support" || state.view === "flow") {
     document.querySelector(`.vertical-nav-btn[data-nav="learning-domain-tool"]`)?.classList.add("active");
   }
   
@@ -570,7 +571,8 @@ function updateNavigationActive() {
     btn.classList.remove("active");
   });
   
-  const activeTabBtn = document.querySelector(`.tab-btn[data-nav="${state.view}"]`);
+  const activeViewForTab = state.view === "flow" ? "observation-support" : state.view;
+  const activeTabBtn = document.querySelector(`.tab-btn[data-nav="${activeViewForTab}"]`);
   if (activeTabBtn) {
     activeTabBtn.classList.add("active");
   }
@@ -593,7 +595,7 @@ function updateHorizontalTabs() {
     foundationsTabs.style.display = "flex";
   } else if (state.view === "using-klpt" || state.view === "learning-domains" || 
              state.view.startsWith("ld-") || state.view === "observation-support" || 
-             state.view === "practice-support") {
+             state.view === "practice-support" || state.view === "flow") {
     primaryTabs.style.display = "block";
     learningDomainToolTabs.style.display = "flex";
   } else {
@@ -2823,12 +2825,19 @@ function saveCurrentDraft() {
   state.usedCodes.add(state.summaryForm.learnerCode);
   const payload = createDraftPayload();
   
-  // If we're editing an existing session, update it; otherwise create new
+  // If we're editing an existing session, update it and move to top; otherwise create new
   if (state.loadedSessionIndex !== null && state.loadedSessionIndex >= 0 && state.loadedSessionIndex < state.savedDrafts.length) {
-    state.savedDrafts[state.loadedSessionIndex] = payload;
+    // Remove from current position
+    const existingSession = state.savedDrafts.splice(state.loadedSessionIndex, 1)[0];
+    // Update with new payload and prepend to front
+    const updatedSession = { ...existingSession, ...payload };
+    state.savedDrafts = [updatedSession, ...state.savedDrafts].slice(0, 20);
+    // Update loadedSessionIndex to 0 since it's now at the front
+    state.loadedSessionIndex = 0;
   } else {
     // Create new session (prepend and limit to 20)
     state.savedDrafts = [payload, ...state.savedDrafts].slice(0, 20);
+    state.loadedSessionIndex = 0; // Mark as loaded for future auto-saves
   }
   persistDrafts();
   renderSessionMeta(); // refresh meta bar
