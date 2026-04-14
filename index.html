@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Kindy Learning Progression Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="header-top">
+        <div class="brand-row">
+          <div class="brand-top">
+            <img src="./klpt-logo.png" alt="KLPT logo" class="brand-logo" />
+            <div>
+              <p class="eyebrow">Stakeholder Demo</p>
+              <h1>Kindy Learning Progression Tool</h1>
+            </div>
+          </div>
+          <p class="subtitle"></p>
+        </div>
+        
+        <nav class="vertical-nav" aria-label="Main navigation">
+          <button type="button" class="vertical-nav-btn" data-nav="home" title="Home">Home</button>
+          <button type="button" class="vertical-nav-btn" data-nav="foundations" title="Foundations">Foundations</button>
+          <button type="button" class="vertical-nav-btn" data-nav="learning-domains-tools" title="Learning Domains & Tools">Learning Domains & Tools</button>
+        </nav>
+      </div>
+      
+      <nav id="primaryTabs" class="primary-tabs" aria-label="Primary sections">
+        <button type="button" class="tab-btn" data-tab="using-klpt">Using the KLPT</button>
+        <button type="button" class="tab-btn" data-tab="learning-domains">Learning Domains</button>
+        <button type="button" class="tab-btn" data-tab="observation-support">Observation Support Tool</button>
+        <button type="button" class="tab-btn" data-tab="practice-support">Practice Support</button>
+      </nav>
+      
+      <div id="sessionMeta" class="session-meta hidden"></div>
+      <nav id="stepper" class="stepper" aria-label="Progress steps"></nav>
+    </header>
+
+    <main id="mainContent" class="main-content" tabindex="-1"></main>
+
+    <footer id="stickyActions" class="sticky-actions" aria-live="polite"></footer>
+  </div>
+
+  <template id="loadingTemplate">
+    <section class="panel loading-panel" aria-busy="true">
+      <div class="loader"></div>
+      <p>Loading learning domains...</p>
+    </section>
+  </template>
+
+  <template id="errorTemplate">
+    <section class="panel error-panel" role="alert">
+      <h2>Unable to load learning metadata</h2>
+      <p>Please ensure <code>domains.json</code> is in the same folder as this app and served via a local HTTP server.</p>
+    </section>
+  </template>
+
+  <div id="codeSelectionModal" class="modal hidden" role="dialog" aria-labelledby="codeModalTitle">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <h2 id="codeModalTitle">Choose a Learner Code</h2>
+      <p class="modal-subtitle">Select a code for this observation. Each code can only be used once.</p>
+      <div id="codeSelectionGrid" class="code-grid"></div>
+      <div class="modal-actions">
+        <button type="button" id="codeModalCancelBtn" class="btn secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal hidden" role="dialog" aria-labelledby="confirmTitle">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <h2 id="confirmTitle"></h2>
+      <p id="confirmMessage"></p>
+      <div class="modal-actions">
+        <button type="button" id="confirmCancelBtn" class="btn secondary">Cancel</button>
+        <button type="button" id="confirmOkBtn" class="btn warn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="alertModal" class="modal hidden" role="dialog" aria-labelledby="alertTitle">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <h2 id="alertTitle"></h2>
+      <p id="alertMessage"></p>
+      <div class="modal-actions">
+        <button type="button" id="alertOkBtn" class="btn primary">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+{
+  "domains": [
+    {
+      "id": "d28f950b-fa87-429e-8f6c-2d20a5fd7c00",
+      "index": 1,
+      "name": "Language and Literacy",
+      "summary": "Language and literacy focuses on how children communicate, understand language, and engage with spoken and written texts. It includes growth in speech, conversation, sound awareness, comprehension, and text purpose.",
+      "subDomains": [
+        {
+          "id": "42f32265-7481-464f-ad36-bcaf8183af77",
+          "index": 1,
+          "name": "Sounds and Speech",
+          "elements": [
+            {
+              "id": "7c3587e1-ab1c-4d38-8714-882b54bed77a",
+              "index": 1,
+              "name": "Words and sentences",
+              "behaviours": [
+                {
+                  "id": "d0aa97bd-6b8f-4921-8e7a-b60f2669d25f",
+                  "index": 1,
+                  "name": "Single Words & Gestures",
+                  "description": "<ul><li>Speaks (communicates) using a very limited range of single words.</li><li>May gesture instead of, or as well as, speaking.</li></ul>"
+                },
+                {
+                  "id": "ffa3a09f-ccc1-4def-9b82-85fb4008eb3d",
+                  "index": 2,
+                  "name": "Single Words & Phrases",
+                  "description": "<ul><li>Speaks (communicates) briefly using single words and 2-3 word phrases. Ideas are rarely linked.</li><li>Uses a limited vocabulary that may mainly be nouns.</li></ul>"
+                },
+                {
+                  "id": "cb2cb528-4dfb-418c-a9f5-74e8d49272e7",
+                  "index": 3,
+                  "name": "Short Linked Phrases",
+                  "description": "<ul><li>Speaks (communicates) briefly in short sentences or phrases (e.g., up to 4 words) attempting to link some ideas, using a small range of simple, common words.</li><li>Speech (communication) may be disordered (e.g., incorrect sentence structure (syntax)) with some confusion about word meaning.</li><li>May be hard to follow at times.</li></ul>"
+                },
+                {
+                  "id": "b7e4c29b-0c32-4c64-8c5c-7b1c1d07b60f",
+                  "index": 4,
+                  "name": "Simple Sentences",
+                  "description": "<ul><li>Speaks (communicates) in sentences of up to 5-6 words. May use one or two conjunctions (mainly ‘and’) and one or two pronouns making some errors.</li><li>Mainly uses simple, common nouns and a limited range of verbs appropriately to convey meaning.</li></ul>"
+                },
+                {
+                  "id": "8bff448c-e81d-45df-8368-0404e52192c6",
+                  "index": 5,
+                  "name": "Several Connected Sentences",
+                  "description": "<ul><li>Speaks (communicates) for several sentences (e.g., 35+ words) mainly using 2-3 simple conjunctions (e.g., &#39;and&#39;, &#39;then&#39;, ‘so’)</li><li>Speech (communication) mostly uses correct word order (syntax).</li><li>Uses many common nouns, and some simple verbs and adjectives appropriately to convey meaning.</li></ul>"
+                },
+                {
+                  "id": "34e31019-f7d6-45f7-a5ed-9ee98542bf48",
+                  "index": 6,
+                  "name": "Longer Sentences",
+                  "description": "<ul><li>Uses some longer sentences (e.g., 7+ words) when speaking (communicating) and 3-4 common conjunctions (e.g., and, but, because, then).</li><li>Uses personal pronouns (e.g., ‘I’, ‘me’, ‘you’ ‘we’, ‘us’, ‘he’, she’) and a wide variety of common nouns, verbs and adjectives appropriately to convey meaning.</li></ul>"
+                },
+                {
+                  "id": "b12e07ae-7df9-46d2-9b5e-09ee894e81a1",
+                  "index": 7,
+                  "name": "Rich Connected Speech",
+                  "description": "<ul><li>Uses many long sentences and 5-6 conjunctions (e.g., and, but, because, then, so, after) and a range of pronouns when speaking.</li><li>Uses a wide range of common words, including words and constructions from story books and in everyday speech.</li></ul>"
+                }
+              ]
+            },
+            {
+              "id": "8038086d-d941-43bb-b3e5-643fc0ae61f3",
+              "index": 2,
+              "name": "Storytelling and conversations",
+              "behaviours": [
+                {
+                  "id": "16233ff7-24c9-4a0a-bc41-a32a1eba5d83",
+                  "index": 1,
+                  "name": "Limited Question Responses",
+                  "description": "<ul><li>Insufficient language to understand or respond to most simple questions or make requests.</li></ul>"
+                },
+                {
+                  "id": "f9580e54-b4cd-4436-ae40-5206608c5213",
+                  "index": 2,
+                  "name": "Gesture-Based Responses",
+                  "description": "<ul><li>Mainly relies on gestures in responding to questions or making requests (e.g., shakes head, or points).</li></ul>"
+                },
+                {
+                  "id": "2f9db13b-0529-43f2-86f2-1f7cded0581d",
+                  "index": 3,
+                  "name": "Short Personal Stories",
+                  "description": "<ul><li>Tells a short personal story (child’s own experiences, thoughts or feelings) that jumps between unlinked ideas and/or events.</li><li>Makes a few short, simple, familiar requests (e.g., ‘More please).</li><li>Mostly responds to questions with a single word (e.g., yes/no).</li></ul>"
+                },
+                {
+                  "id": "a43b6b83-48a1-4391-8016-b13ca6c2eb28",
+                  "index": 4,
+                  "name": "Simple Conversations",
+                  "description": "<ul><li>Tells a personal story (child’s own experiences, thoughts or feelings) with details that are not distinguished from main events.</li><li>Has short conversations about predictable and familiar topics (e.g., what they are playing with).</li><li>Asks broad or general questions (e.g., ’what’, ‘where’, or ‘who’).</li><li>Responds briefly to a variety of questions and makes simple requests.</li></ul>"
+                },
+                {
+                  "id": "ba443b6e-d7ec-4d6d-b29a-0b2eaccb96be",
+                  "index": 5,
+                  "name": "Logical Personal Stories",
+                  "description": "<ul><li>Tells a personal story (child’s own experiences, thoughts or feelings) that has a logical flow (beginning, middle and end).</li><li>Has conversations about a range of familiar topics mostly from their immediate context (e.g., what they are doing at the time).</li><li>Contributes relevant ideas.</li><li>Asks a range of specific questions that relate to the topic.</li></ul>"
+                },
+                {
+                  "id": "b9629628-4df6-46aa-9e50-dcfd9b9e37e4",
+                  "index": 6,
+                  "name": "Detailed Conversations",
+                  "description": "<ul><li>Tells a longer personal story (child’s own experiences, thoughts or feelings) that is well structured, providing some details to improve or clarify the story in response to questions.</li><li>Has thoughtful conversations, including some less familiar topics outside their immediate context.</li></ul>"
+                },
+                {
+                  "id": "5a497360-cd6c-420f-9580-4a36235651cf",
+                  "index": 7,
+                  "name": "Structured Detailed Stories",
+                  "description": "<ul><li>Tells a longer, detailed personal story (child’s own experiences, thoughts or feelings) that is well structured, identifying the problem/main event and resolution, without being asked prompting questions.</li><li>Contributes considered ideas to conversations.</li><li>Asks questions that build on or clarify their understanding.</li></ul>"
+                }
+              ]
+            },
+            {
+              "id": "7469b59a-4e16-4267-b97b-a16d21a6054f",
+              "index": 3,
+              "name": "Sounds in words",
+              "behaviours": [
+                {
+                  "id": "1fa77564-306e-4e45-8188-004f00079a5a",
+                  "index": 1,
+                  "name": "Supported Word Attempts",
+                  "description": "<ul><li>Requires modelling and support to say recognisable words.</li></ul>"
+                },
+                {
+                  "id": "fcfbde1a-1a93-4e50-9cdb-93346b0adca5",
+                  "index": 2,
+                  "name": "Partial Syllable Repetition",
+                  "description": "<ul><li>Repeats words of 2-4 syllables but only says some of the sounds (e.g.,child might say &quot;elephant&quot; as &quot;el-fant,&quot;).</li><li>Everyday words are often unclear.</li></ul>"
+                },
+                {
+                  "id": "193b6905-e480-4166-9ff5-641c7001c8d5",
+                  "index": 3,
+                  "name": "Mostly Clear Speech",
+                  "description": "<ul><li>Talk is mostly clear in conversations.</li></ul>"
+                },
+                {
+                  "id": "00fb25a3-6449-49e6-89ad-2efc5d7e3d0b",
+                  "index": 4,
+                  "name": "Clear Syllable Repetition",
+                  "description": "<ul><li>Repeats 2 and 3-syllable words and says all of the sounds.</li></ul>"
+                },
+                {
+                  "id": "6599dcc6-e4c2-4da7-bb07-8092fac7d55f",
+                  "index": 5,
+                  "name": "Clear Four-Syllable Words",
+                  "description": "<ul><li>Repeats an unfamiliar 4-syllable word and says all the sounds.</li><li>Talks clearly in conversations.</li></ul>"
+                },
+                {
+                  "id": "8ae7be19-87de-41fd-a824-612c17912bff",
+                  "index": 6,
+                  "name": "Sound, Rhyme & Syllables",
+                  "description": "<ul><li>Identifies when the first sounds in words are the same and when they are not.</li><li>Identifies if words rhyme or not</li><li>Generates a word that rhymes including both real (e.g., &#39;cat&#39; and &#39;hat&#39;) and nonsense words (e.g., &#39;lat&#39;).</li><li>Can identify syllables in words, such as by clapping.</li></ul>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "9ca85d43-1f2a-4733-b679-b7fe503dae79",
+          "index": 2,
+          "name": "Comprehension",
+          "elements": [
+            {
+              "id": "5b6fed16-62aa-43fb-ab13-d43b92b7bba3",
+              "index": 1,
+              "name": "Retelling, interpreting, linking and evaluating",
+              "behaviours": [
+                {
+                  "id": "51c58bad-e25e-4212-9aeb-27fce90b1c9c",
+                  "index": 1,
+                  "name": "Picture-Based Story Ideas",
+                  "description": "<ul><li>Uses pictures in a book to answer questions about the main characters or problem in the story.</li><li>Labels 3-4 very familiar objects in the illustrations.</li><li>Refers to one key idea in a short and simple story (e.g., the main event, the main character).</li></ul>"
+                },
+                {
+                  "id": "d352b6a5-2522-4e92-bd18-01de3d63172c",
+                  "index": 2,
+                  "name": "Retells Simple Key Ideas",
+                  "description": "<ul><li>Retells the key ideas from a short and simple text (2-3).</li><li>Names most of the objects in the illustrations that are key to the story.</li><li>Interprets simple ideas (e.g., how a character is feeling) from explicit clues or an illustration.</li><li>Links simple ideas (e.g., cause and effect – watering the plant makes it grow) for a predictable, familiar event.</li></ul>"
+                },
+                {
+                  "id": "506e680d-bd87-4031-b5aa-a12a911ba4d9",
+                  "index": 3,
+                  "name": "Retells and Links Ideas",
+                  "description": "<ul><li>Retells the story including most key ideas from throughout a simple text.</li><li>Interprets simple, implied ideas (e.g., a secondary character’s feelings).</li><li>Links cause and effect for most key events or characters’ motivations (e.g., characters’ decision to share their toys made their friend happy).</li></ul>"
+                },
+                {
+                  "id": "0c24ab57-8d1d-4c4c-a3d2-0cfb6e70de00",
+                  "index": 4,
+                  "name": "Explains Implied Ideas",
+                  "description": "<ul><li>Explains a range of implied ideas (e.g., the reason for a character’s behaviour).</li><li>Makes simple, obvious comparisons (e.g., about a predictable change in a story – ‘The caterpillar spins a cocoon and changes into a butterfly’), and obvious predictions (&#39;The character will find the treasure in the cave because he has a treasure map).</li><li>Makes links between well separated ideas (e.g., where there are several events or cumulative causes that lead to an effect – the steps to planting a seed).</li><li>Gives a simple reason for their opinion.</li></ul>"
+                },
+                {
+                  "id": "1bfa9130-2926-44fe-8973-48bee411ac56",
+                  "index": 5,
+                  "name": "Sophisticated Text Reasoning",
+                  "description": "<ul><li>Explains a range of implied ideas with some sophistication (e.g., a character’s subtly communicated motivation).</li><li>Makes comparisons. between viewpoints (e.g., compares one character’s view to another) and makes generalisations from explicit clues.</li><li>Gives synonyms or antonyms for highly familiar words (e.g., mad means angry).</li><li>Makes links between a series of events (e.g., to sequence a short story).</li><li>Gives evidence to support their opinion (e.g., why a character behaved as they did).</li></ul>"
+                }
+              ]
+            },
+            {
+              "id": "04e1ff62-d774-46ac-867f-75f9515a4eb1",
+              "index": 2,
+              "name": "Text purpose",
+              "behaviours": [
+                {
+                  "id": "cb74b927-2f0b-456c-96c2-9a589a890ce6",
+                  "index": 1,
+                  "name": "Explores Sensory Books",
+                  "description": "<ul><li>Selects books with textural features such as lift-the-flaps, tactile surfaces, sounds and minimal, simple labels.</li><li>Attends to the sensory features of books designed for this developmental stage.</li></ul>"
+                },
+                {
+                  "id": "b8553836-9a80-4519-a0f1-9de5890eb666",
+                  "index": 2,
+                  "name": "Recognises Favourite Texts",
+                  "description": "<ul><li>Selects a highly familiar, preferred book, holds it the right way up based on key features such as the front cover or illustrations that interest them.</li><li>Recognises some familiar environmental print (e.g., name of centre, logo) based on clues such as graphics and location.</li></ul>"
+                },
+                {
+                  "id": "8fdbdd7c-eb22-4af5-b5ae-22f481b6d1cf",
+                  "index": 3,
+                  "name": "Identifies Familiar Text Purposes",
+                  "description": "<ul><li>Identifies the purpose of highly familiar texts (e.g., this text tells a story, this one is for cooking, this is a shopping list).</li><li>Distinguishes factual texts from fictional texts.</li></ul>"
+                },
+                {
+                  "id": "e72cc297-08ee-4fa5-a949-34361b6a3d16",
+                  "index": 4,
+                  "name": "Identifies Text Types",
+                  "description": "<ul><li>Identifies the purpose of a few different text types and features (e.g., fairytales, nursery rhymes, show and tell).</li></ul>"
+                },
+                {
+                  "id": "587cc59c-08a0-4d99-a73f-c06fc6ed2e87",
+                  "index": 5,
+                  "name": "Identifies Many Text Purposes",
+                  "description": "<ul><li>Identifies the purpose of a range of familiar text types and features (e.g., Dreamtime stories, recipes, craft instructions, fables, myths, lists, labels).</li></ul>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c84c2889-c512-46a4-9ff0-952a132a9706",
+      "index": 2,
+      "name": "Executive Function",
+      "summary": "Executive function focuses on how children manage attention, persistence, adaptability, and problem solving. It supports children to plan, respond flexibly, manage challenges, and build independence in learning.",
+      "elements": [
+        {
+          "id": "e2e59ce7-d7b6-4556-aac6-578e3da35ce6",
+          "index": 1,
+          "name": "Persistence",
+          "behaviours": [
+            {
+              "id": "6f3e0316-1f04-4d9f-9d02-47e51cf0e633",
+              "index": 1,
+              "name": "Supported Task Engagement",
+              "description": "<ul><li>Observes tasks being performed by others, preparing to undertake one element of the task.</li><li>Completes a single element of a highly structured task (e.g., finds their bag when they need to put their bag on their back).</li><li>Demonstrates joint attention (e.g., in a group situation, directs their attention toa specified object when prompted).</li><li>Requires assistance from others to stay engaged, (e.g., provision of simple, manageable tasks).</li><li>Relies on routines, visual schedules and scaled prompts to initiate engagement with activities and tasks.</li><li>Rarely recognises a need for help.</li></ul>"
+            },
+            {
+              "id": "407aa61b-91d0-4731-b69a-e02db8ac9b68",
+              "index": 2,
+              "name": "Routine Task Persistence",
+              "description": "<ul><li>Completes simple, routine tasks with one step instructions (e.g., putting their bag in their locker).</li><li>Maintains focus despite minor distractions (e.g., staying on task, ignoring peers playing nearby).</li><li>Persists through a small setback or challenge (e.g., when equipment is missing).</li><li>Waits for their turn in a game with one other person or when asked to line-up for a short period.</li><li>Requires reassurance with tasks that are new or challenging.</li><li>Engages best when verbal and visual prompts are provided throughouta task.</li><li>Requires instructions to be repeated.</li><li>May pause when they need help but may not initiate requests for help.</li></ul>"
+            },
+            {
+              "id": "6e145b2c-5aa2-4842-b539-f2bcd6946fbe",
+              "index": 3,
+              "name": "Multi-Step Persistence",
+              "description": "<ul><li>Persists with tasks involving multiple steps that require some time, effort, and patience (e.g., building a block tower).</li><li>Maintains focused attention when engaged in preferred tasks.</li><li>Persists through one or two set-backs but may require support if challenges continue (e.g., trying to put shoes on)</li><li>Waits for their turn in a game involving two or three people (e.g., they are last in a line of children waiting and they do not express frustration verbally or physically).</li><li>May initiate new or challenging tasks.</li><li>Aware of needing help but may not always ask for it.</li></ul>"
+            },
+            {
+              "id": "f52eae40-c79a-46d4-8ffa-59b392bc674c",
+              "index": 4,
+              "name": "Independent Persistence",
+              "description": "<ul><li>Persists with tasks involving more than three steps which require time, effort and patience (e.g., solving a multipiece puzzle, playing a game with several players).</li><li>Resists distractions when focused on a task involving several steps (e.g., background noise, peers playing close-by, and lunch is being served).</li><li>Attempts to manage set-backs and persist independently. May ask a peer or adult for help.</li><li>Waits patiently for their turn when a game or task demands it (e.g., in a game of UNO if it is their turn next, but then order is reversed, so they now have to wait longer to have their turn).</li><li>Seeks specific reassurance and responds appropriately to feedback when persisting with new or challenging tasks.</li></ul>"
+            },
+            {
+              "id": "7aa26f37-ed92-4e06-b387-9a9958c67ca8",
+              "index": 5,
+              "name": "Supports Others' Persistence",
+              "description": "<ul><li>Manages multiple different setbacks and distractions throughout complex tasks (tailored to the child’s ability).</li><li>Supports others by providing strategies for managing setbacks.</li><li>Actively congratulates others, recognising their persistence, and helps or encourages them.</li><li>Demonstrates patience and consideration when waiting for others to take their turn.</li><li>Completes multi-step, goal-oriented tasks independently and successfully.</li></ul>"
+            }
+          ]
+        },
+        {
+          "id": "3dcd089c-f52c-47b1-bbc7-a0f5e7d69ff8",
+          "index": 2,
+          "name": "Adaptability",
+          "behaviours": [
+            {
+              "id": "3bca8bdd-549b-4d1a-8311-1f1f419b714e",
+              "index": 1,
+              "name": "Familiar Routine Strategies",
+              "description": "<ul><li>Engages in elements of routine tasks using familiar methods and strategies.</li><li>May participate in new tasks or activitiesthrough observation or with supportive prompts.</li><li>May require repetition and tailored guidance tofeel confident with new tasks or activities.</li></ul>"
+            },
+            {
+              "id": "c2a7299f-61b7-4adb-933f-f6e1df2a95e8",
+              "index": 2,
+              "name": "Adapts to Small Changes",
+              "description": "<ul><li>Adapts when small changes are made to daily routines (e.g., a change to the order of activities).</li><li>Adapts to a small change made midway through an activity or game, (e.g., when a peer suggests a different way to build the tower).</li><li>Investigatesunfamiliar learning environments or materials through observation.</li><li>Participates in simple activities where thinking is required, and extensive practice and supportive cuesare provided.</li><li>Participates in tasks where trial and error are involved, with opportunities to experiment and try out a simple hypothesis.</li></ul>"
+            },
+            {
+              "id": "151b48a9-339a-4e11-9252-6e06cece3b50",
+              "index": 3,
+              "name": "Adapts With Support",
+              "description": "<ul><li>Adapts to major changes to daily routines with support (e.g., switching from indoor playtime to an unexpected trip outdoors), though may still become slightly over-excited, or anxious.</li><li>Adapts to a complex change made mid-way through an activity or game (e.g., shifting from building anaeroplane with blocks to building a car).</li><li>Investigatesunfamiliar learning environments or materials (may tend to focus on a few elements only or areas more in line with their interests).</li><li>Participates in tasks using one or two strategies, to try out a hypothesis with some guidance.</li></ul>"
+            },
+            {
+              "id": "2313be49-50e5-4c2d-a75d-b569269c21b8",
+              "index": 4,
+              "name": "Flexible Independent Adaptation",
+              "description": "<ul><li>Adapts to major changes in daily routines without requiring support (e.g., adjusting to relief staff when familiar teachers and educators are absent).</li><li>Flexibly adapts to multiple changes throughout an activity or game (e.g., switching roles or tasks in a group project as needed).</li><li>Thoroughly investigatesnew contexts or materials, seeking opportunities to explore new environments and resources to extend their learning.</li><li>Participates in tasks where they can engage in using higher order thinking skills, confidently experimenting and formulating their own hypotheses needing minimal guidance.</li></ul>"
+            },
+            {
+              "id": "89985897-e1d0-4f3f-873e-034356425745",
+              "index": 5,
+              "name": "Adapts for Peers",
+              "description": "<ul><li>Demonstrates flexibility in response to their peers’ needs (e.g., invents rules to make the game easier or harder for different players).</li></ul>"
+            }
+          ]
+        },
+        {
+          "id": "b181d072-edbf-47e1-a122-adaf0d847ffa",
+          "index": 3,
+          "name": "Problem solving",
+          "behaviours": [
+            {
+              "id": "412a2a91-e1e4-48e7-9bb3-9eabf7171a39",
+              "index": 1,
+              "name": "Supported Simple Strategies",
+              "description": "<ul><li>Engages with simple problem-solving strategies with some adult support (e.g., finding a card, looking at a picture).</li><li>Focuses on the sensory aspects of a problem or task, rather than applying problem-solving strategies to identify the actual problem (e.g., notices that their clothes feel cold when wet but does not identify the need to change out of wet clothes).</li><li>May not independently identify simple, routine problems without adult guidance.</li></ul>"
+            },
+            {
+              "id": "8726b116-a314-4fa3-9d72-263a6b70a544",
+              "index": 2,
+              "name": "Familiar Problem Strategies",
+              "description": "<ul><li>Demonstrates predictable or familiar strategies for how a routine problem might be solved (e.g., what do we do if our drink bottle is empty?).</li><li>Attempts to experiment with new and unfamiliar materials, (e.g., incorporating unexpected elements into a process).</li><li>Shares how they attempted to solve a problem (may not reflect what actually happened).</li><li>Makes a simple plan (e.g., a role play of a familiar fairytale) that involves some collaboration or sequencing but is largely spontaneous.</li><li>Engages with aspects of an activity for sensory exploration or enjoyment, without necessarily seeking a solution (e.g., builds a block tower, enjoying the sound of it falling down and not viewing the ‘falling tower’ as a problem).</li></ul>"
+            },
+            {
+              "id": "ab181854-236f-404f-802c-2368df534c94",
+              "index": 3,
+              "name": "Guided Strategy Reflection",
+              "description": "<ul><li>Demonstrates1-2 strategiesto solve a problem usingunfamiliar materials (e.g., construction of a three-dimensional object using recycled materials).</li><li>Experiments with at least two different, familiar strategiesto solve a problem. (e.g., how to negotiate a play space with peers, but requires some hints and ideas to try more imaginative and potentially effective approaches from a teacher or educator).</li><li>Describes, with prompting, some aspects of how they attempted to solve a problem. When prompted they can reflect on what worked or did not work, reflecting on the strategies they used.</li><li>Plans an activity with a peer that happens across different timeswithin one day (e.g., putting on a simple play including assigning roles, simple costumes, and a basic plot) as well as adjusting to minor disruptions (e.g., a conflict between two children wanting the same costume).</li><li>Reflects on their own responses and may change their solution in response to feedback.</li></ul>"
+            },
+            {
+              "id": "b2dcfc4c-b135-4856-ad09-d6af3b78cf88",
+              "index": 4,
+              "name": "Flexible Problem Planning",
+              "description": "<ul><li>Demonstratesseveral strategiesfor how an unfamiliar problem might be solved (e.g., how to dismantle a piece of unfamiliar equipment with spanners and screwdrivers).</li><li>Experiments with diverse and imaginative ways to solve an unfamiliar problem (e.g., incorporating new and unfamiliar resources into an activity).</li><li>Describes how they attempted to solve a problem providing some reasons for what they did, or did not do, why it worked or did not work and what they might do differently next time.</li><li>Collaboratively plan and sequence an activity with peers that involves a series of steps to take place over two or more days (e.g., putting on an elaborate play with a detailed plot and consideration of how to engage the audience), including adjusting to disruptions and unanticipated events (e.g., rain during an outdoor scene in the play).</li></ul>"
+            },
+            {
+              "id": "b5adaa54-a3f3-44f5-9d72-56e362838e00",
+              "index": 5,
+              "name": "Leads Problem Solving",
+              "description": "<ul><li>Leads others through strategiesto problems.</li><li>Provides a range of strategies for different contexts.</li><li>Provides solutions that challenge existing rules or conventionalways of doing things (e.g., rewrites rules in games to increase their challenge) or to make them easier for others.</li></ul>"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title" focusable="false">
+  <title id="title">Start new observation</title>
+  <defs>
+    <linearGradient id="bgGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#daf0d8"/>
+      <stop offset="100%" stop-color="#abe3b1"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#89c986" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <circle cx="60" cy="60" r="54" fill="url(#bgGrad)" filter="url(#glow)" />
+  <circle cx="60" cy="60" r="48" fill="#f5fff3" opacity="0.9" />
+  <path d="M58 30h4v60h-4zM30 58h60v4H30z" fill="#3c7a30" rx="2" ry="2" />
+  <circle cx="88" cy="32" r="6" fill="#f9f7d7" opacity="0.95" />
+  <circle cx="25" cy="76" r="4" fill="#fff4a7" opacity="0.92" />
+  <path d="M20 20l8 4" stroke="#ededc0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M90 82l10 6" stroke="#f7f0d0" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M60 12l4 10" stroke="#d7f1c7" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

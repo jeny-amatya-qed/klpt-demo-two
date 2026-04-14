@@ -1,0 +1,76 @@
+{
+  "avatars": [
+    {
+      "id": "avatar-1",
+      "name": "Cheerful",
+      "emoji": "😊",
+      "color": "#FFD700"
+    },
+    {
+      "id": "avatar-2",
+      "name": "Curious",
+      "emoji": "🤔",
+      "color": "#87CEEB"
+    },
+    {
+      "id": "avatar-3",
+      "name": "Creative",
+      "emoji": "🎨",
+      "color": "#FF69B4"
+    },
+    {
+      "id": "avatar-4",
+      "name": "Thoughtful",
+      "emoji": "💭",
+      "color": "#9370DB"
+    },
+    {
+      "id": "avatar-5",
+      "name": "Explorer",
+      "emoji": "🔭",
+      "color": "#FF8C00"
+    },
+    {
+      "id": "avatar-6",
+      "name": "Playful",
+      "emoji": "🎭",
+      "color": "#20B2AA"
+    },
+    {
+      "id": "avatar-7",
+      "name": "Peaceful",
+      "emoji": "🧘",
+      "color": "#90EE90"
+    },
+    {
+      "id": "avatar-8",
+      "name": "Energetic",
+      "emoji": "⚡",
+      "color": "#FF6347"
+    },
+    {
+      "id": "avatar-9",
+      "name": "Dreamer",
+      "emoji": "✨",
+      "color": "#FFB6C1"
+    },
+    {
+      "id": "avatar-10",
+      "name": "Happy",
+      "emoji": "😄",
+      "color": "#FFFF00"
+    },
+    {
+      "id": "avatar-11",
+      "name": "Thoughtful",
+      "emoji": "🧠",
+      "color": "#87CEEB"
+    },
+    {
+      "id": "avatar-12",
+      "name": "Nature Lover",
+      "emoji": "🌿",
+      "color": "#32CD32"
+    }
+  ]
+}
