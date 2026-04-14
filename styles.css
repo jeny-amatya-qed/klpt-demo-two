@@ -2299,8 +2299,8 @@ select {
 
 .home-panel-card {
   border: none;
-  background: linear-gradient(135deg, #f0f8fc, #f5f9ff);
-  border: 2px solid #d0e5f0;
+  background: linear-gradient(135deg, color-mix(in srgb, white 85%, var(--accent, #f0f8fc)), #f5f9ff);
+  border: 2px solid color-mix(in srgb, white 70%, var(--accent, #d0e5f0));
   border-radius: var(--radius-md);
   padding: var(--space-4);
   /*text-align: left;*/
@@ -2310,7 +2310,7 @@ select {
 
 .home-panel-card:hover {
   transform: translateY(-3px);
-  border-color: var(--primary);
+  border-color: var(--accent, var(--primary));
   box-shadow: 0 12px 28px rgba(0, 119, 193, 0.15);
 }
 
@@ -2443,8 +2443,8 @@ select {
 
 .domain-card {
   padding: var(--space-4);
-  background: linear-gradient(135deg, #f8fbfd, #f1f5f9);
-  border: 1px solid #d8e6f1;
+  background: linear-gradient(135deg, color-mix(in srgb, white 90%, var(--accent, #f8fbfd)), #f1f5f9);
+  border: 1px solid color-mix(in srgb, white 70%, var(--accent, #d8e6f1));
   border-radius: var(--radius-md);
   text-align: center;
 }
@@ -2491,8 +2491,8 @@ select {
 }
 
 .domain-card-btn {
-  border: 2px solid #d0e5f0;
-  background: linear-gradient(135deg, #f8fbfd, #ffffff);
+  border: 2px solid color-mix(in srgb, white 70%, var(--accent, #d0e5f0));
+  background: linear-gradient(135deg, color-mix(in srgb, white 90%, var(--accent, #f8fbfd)), #ffffff);
   border-radius: var(--radius-md);
   padding: var(--space-4);
   text-align: left;
@@ -2502,7 +2502,7 @@ select {
 
 .domain-card-btn:hover {
   transform: translateY(-3px);
-  border-color: var(--primary);
+  border-color: var(--accent, var(--primary));
   box-shadow: 0 12px 28px rgba(0, 119, 193, 0.15);
 }
 
@@ -2521,7 +2521,7 @@ select {
 }
 
 .domain-card-btn .arrow {
-  color: var(--primary);
+  color: var(--accent, var(--primary));
   font-weight: 700;
   font-size: 1.2rem;
 }

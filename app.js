@@ -655,13 +655,13 @@ function renderHome() {
 
        <!-- Navigation Panels (Side by side) -->
         <div class="home-panel-grid">
-          <button type="button" class="home-panel-card" id="goFoundationsBtn">
-            <h3>Foundations</h3>
+          <button type="button" class="home-panel-card" id="goFoundationsBtn" style="--accent: #B457D0;">
+            <h3>🏗️ Foundations</h3>
             <p>Learn about the foundational principles of quality observations and data interpretation</p>
             <div class="go-button">Go →</div>
           </button>
-          <button type="button" class="home-panel-card" id="goLearningDomainsBtn">
-            <h3>Learning Domains & Tool</h3>
+          <button type="button" class="home-panel-card" id="goLearningDomainsBtn" style="--accent: #0077C1;">
+            <h3>📚 Learning Domains & Tool</h3>
             <p>Explore the KLPT learning domains, observe behaviours, and use the observation support tool</p>
             <div class="go-button">Go →</div>
           </button>
@@ -909,36 +909,49 @@ function renderUsingKLPT() {
         <p>The KLPT is built around five key learning domains that reflect how children develop and learn:</p>
         
         <div class="domain-cards">
-          <div class="domain-card">
-            <h4>Language and Literacy</h4>
+          <button type="button" class="domain-card-btn" id="usingKLPTLanguageLiteracyBtn" style="--accent: #F6861F;">
+            <h4>📚 Language and Literacy</h4>
             <p>Communication, vocabulary, comprehension, and early literacy skills development.</p>
-          </div>
-          <div class="domain-card">
-            <h4>Executive Function</h4>
+            <div class="arrow">→</div>
+          </button>
+          <button type="button" class="domain-card-btn" id="usingKLPTExecutiveFunctionBtn" style="--accent: #2A953C;">
+            <h4>🧠 Executive Function</h4>
             <p>Self-regulation, planning, memory, and the ability to manage and organize learning.</p>
-          </div>
-          <div class="domain-card">
-            <h4>Social & Emotional Learning</h4>
+            <div class="arrow">→</div>
+          </button>
+          <button type="button" class="domain-card-btn" id="usingKLPTSocialEmotionalBtn" style="--accent: #EA0B8C;">
+            <h4>❤️ Social & Emotional Learning</h4>
             <p>Emotional awareness, relationships, empathy, and developing social skills.</p>
-          </div>
-          <div class="domain-card">
-            <h4>Physicality</h4>
+            <div class="arrow">→</div>
+          </button>
+          <button type="button" class="domain-card-btn" id="usingKLPTPysicalityBtn" style="--accent: #CF2027;">
+            <h4>⚽ Physicality</h4>
             <p>Gross and fine motor skills, coordination, and physical awareness development.</p>
-          </div>
-          <div class="domain-card">
-            <h4>Mathematics and Numeracy</h4>
+            <div class="arrow">→</div>
+          </button>
+          <button type="button" class="domain-card-btn" id="usingKLPTMathematicsBtn" style="--accent: #0077C1;">
+            <h4>🔢 Mathematics and Numeracy</h4>
             <p>Mathematical thinking, number sense, patterns, and problem-solving skills.</p>
-          </div>
+            <div class="arrow">→</div>
+          </button>
         </div>
       </div>
 
       <div class="find-out-more-section">
         <h3>Find Out More About the KLPT</h3>
         <p>Explore each learning domain in detail to understand the progression of development and how to support learners effectively.</p>
-        <a href="#" class="btn primary">Explore Learning Domains</a>
+        <a href="#" class="btn primary" id="exploreLearningDomainsBtn">Explore Learning Domains</a>
       </div>
     </section>
   `;
+
+  document.getElementById("usingKLPTLanguageLiteracyBtn")?.addEventListener("click", () => navigateTo("ld-language-literacy"));
+  document.getElementById("usingKLPTExecutiveFunctionBtn")?.addEventListener("click", () => navigateTo("ld-executive-function"));
+  document.getElementById("usingKLPTSocialEmotionalBtn")?.addEventListener("click", () => navigateTo("ld-social-emotional"));
+  document.getElementById("usingKLPTPysicalityBtn")?.addEventListener("click", () => navigateTo("ld-physicality"));
+  document.getElementById("usingKLPTMathematicsBtn")?.addEventListener("click", () => navigateTo("ld-mathematics"));
+  
+  document.getElementById("exploreLearningDomainsBtn")?.addEventListener("click", () => navigateTo("learning-domains"));
 }
 
 /* ── Learning Domains Overview ──────────────────────────────────── */
@@ -950,28 +963,28 @@ function renderLearningDomains() {
       <p class="section-intro">Explore in detail the five learning domains assessed by the KLPT. Select a domain to view resources and guidance.</p>
       
       <div class="domain-cards-grid">
-        <button type="button" class="domain-card-btn" id="ldLanguageLiteracyBtn">
-          <h3>Language and Literacy</h3>
+        <button type="button" class="domain-card-btn" id="ldLanguageLiteracyBtn" style="--accent: #F6861F;">
+          <h3>📚 Language and Literacy</h3>
           <p>Communication, vocabulary, comprehension, and early literacy development</p>
           <div class="arrow">→</div>
         </button>
-        <button type="button" class="domain-card-btn" id="ldExecutiveFunctionBtn">
-          <h3>Executive Function</h3>
+        <button type="button" class="domain-card-btn" id="ldExecutiveFunctionBtn" style="--accent: #2A953C;">
+          <h3>🧠 Executive Function</h3>
           <p>Self-regulation, planning, memory, and learning management</p>
           <div class="arrow">→</div>
         </button>
-        <button type="button" class="domain-card-btn" id="ldSocialEmotionalBtn">
-          <h3>Social & Emotional Learning</h3>
+        <button type="button" class="domain-card-btn" id="ldSocialEmotionalBtn" style="--accent: #EA0B8C;">
+          <h3>❤️ Social & Emotional Learning</h3>
           <p>Emotional awareness, relationships, empathy, and social development</p>
           <div class="arrow">→</div>
         </button>
-        <button type="button" class="domain-card-btn" id="ldPhysicalityBtn">
-          <h3>Physicality</h3>
+        <button type="button" class="domain-card-btn" id="ldPhysicalityBtn" style="--accent: #CF2027;">
+          <h3>⚽ Physicality</h3>
           <p>Motor skills, coordination, and physical development</p>
           <div class="arrow">→</div>
         </button>
-        <button type="button" class="domain-card-btn" id="ldMathematicsBtn">
-          <h3>Mathematics and Numeracy</h3>
+        <button type="button" class="domain-card-btn" id="ldMathematicsBtn" style="--accent: #0077C1;">
+          <h3>🔢 Mathematics and Numeracy</h3>
           <p>Mathematical thinking, number sense, and problem-solving</p>
           <div class="arrow">→</div>
         </button>
