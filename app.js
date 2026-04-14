@@ -352,8 +352,11 @@ function render() {
 /* ── Session Meta Bar ────────────────────────────────────────────── */
 
 function renderSessionMeta() {
-  if (state.view === "home" || state.view === "using-klpt" || state.view === "learning-domains-tools" || 
-      state.view === "foundations" || state.view === "observation-support" || state.loading || state.loadError ||
+  const contentPages = ["home", "foundations-conducting", "foundations-analysing", "using-klpt", 
+    "learning-domains", "ld-language-literacy", "ld-executive-function", "ld-social-emotional", 
+    "ld-physicality", "ld-mathematics", "observation-support", "practice-support"];
+  
+  if (contentPages.includes(state.view) || state.loading || state.loadError ||
       (!state.summaryForm.learnerCode && !state.observationStartedAt)) {
     el.sessionMeta.classList.add("hidden");
     el.sessionMeta.innerHTML = "";
@@ -410,11 +413,22 @@ function renderStepper() {
 function renderMain() {
   if (state.loading) { el.main.innerHTML = document.getElementById("loadingTemplate").innerHTML; return; }
   if (state.loadError) { el.main.innerHTML = document.getElementById("errorTemplate").innerHTML; return; }
+  
+  // Content/info pages
   if (state.view === "home") { renderHome(); return; }
+  if (state.view === "foundations-conducting") { renderFoundationsConducting(); return; }
+  if (state.view === "foundations-analysing") { renderFoundationsAnalysing(); return; }
   if (state.view === "using-klpt") { renderUsingKLPT(); return; }
-  if (state.view === "learning-domains-tools") { renderLearningDomainsTools(); return; }
-  if (state.view === "foundations") { renderFoundations(); return; }
+  if (state.view === "learning-domains") { renderLearningDomains(); return; }
+  if (state.view === "ld-language-literacy") { renderLDLanguageLiteracy(); return; }
+  if (state.view === "ld-executive-function") { renderLDExecutiveFunction(); return; }
+  if (state.view === "ld-social-emotional") { renderLDSocialEmotional(); return; }
+  if (state.view === "ld-physicality") { renderLDPhysicality(); return; }
+  if (state.view === "ld-mathematics") { renderLDMathematics(); return; }
   if (state.view === "observation-support") { renderObservationSupport(); return; }
+  if (state.view === "practice-support") { renderPracticeSupport(); return; }
+  
+  // Flow pages (observation tool steps)
   if      (state.currentStep === 1) renderStep1();
   else if (state.currentStep === 2) renderStep2();
   else if (state.currentStep === 3) renderStep3();
@@ -425,8 +439,19 @@ function renderMain() {
 /* ── Sticky Actions ──────────────────────────────────────────────── */
 
 function renderStickyActions() {
-  if (state.loading || state.loadError || state.view === "home" || state.view === "using-klpt" || 
-      state.view === "learning-domains-tools" || state.view === "foundations" || state.view === "observation-support") {
+  if (state.loading || state.loadError || 
+      state.view === "home" || 
+      state.view === "foundations-conducting" || 
+      state.view === "foundations-analysing" || 
+      state.view === "using-klpt" || 
+      state.view === "learning-domains" ||
+      state.view === "ld-language-literacy" ||
+      state.view === "ld-executive-function" ||
+      state.view === "ld-social-emotional" ||
+      state.view === "ld-physicality" ||
+      state.view === "ld-mathematics" ||
+      state.view === "observation-support" || 
+      state.view === "practice-support") {
     el.sticky.innerHTML = ""; return;
   }
   const canGoBack = state.currentStep > 1;
@@ -491,67 +516,90 @@ function renderStickyActions() {
 /* ── Navigation Binding ────────────────────────────────────────────── */
 
 function bindNavigation() {
-  // Bind vertical navigation buttons
+  // Bind vertical navigation buttons (main items only)
   Array.from(document.querySelectorAll(".vertical-nav-btn")).forEach(btn => {
     btn.addEventListener("click", () => {
-      const navView = btn.dataset.nav;
-      if (navView === "home") {
-        state.view = "home";
-        state.currentStep = 1;
-      } else if (navView === "learning-domains-tools") {
-        state.view = "learning-domains-tools";
-      } else if (navView === "foundations") {
-        state.view = "foundations";
-      }
-      render();
-      focusMain();
+      navigateTo(btn.dataset.nav);
     });
   });
-
-  // Bind horizontal tab buttons
+  
+  // Bind horizontal submenu tabs
   Array.from(document.querySelectorAll(".tab-btn")).forEach(btn => {
     btn.addEventListener("click", () => {
-      const tabView = btn.dataset.tab;
-      if (tabView === "observation-support") {
-         state.view = "observation-support";
-        //state.view = "home";
-        //state.currentStep = 1;
-      } else if (tabView === "using-klpt") {
-        state.view = "using-klpt";
-      } else if (tabView === "learning-domains") {
-        state.view = "learning-domains-tools";
-      } else if (tabView === "practice-support") {
-        // TODO: Implement practice-support view
-        state.view = "learning-domains-tools"; // Fallback for now
-      }
-      render();
-      focusMain();
+      navigateTo(btn.dataset.nav);
     });
   });
 }
 
+function navigateTo(view) {
+  // Auto-redirect parent menu items to their first child
+  if (view === "foundations") {
+    state.view = "foundations-conducting";
+  } else if (view === "learning-domain-tool") {
+    state.view = "using-klpt";
+  } else {
+    state.view = view;
+  }
+  
+  state.currentStep = 1;
+  render();
+  focusMain();
+}
+
 function updateNavigationActive() {
   // Update vertical nav active state
-  Array.from(document.querySelectorAll(".vertical-nav-btn")).forEach(btn => {
+  document.querySelectorAll(".vertical-nav-btn").forEach(btn => {
     btn.classList.remove("active");
-    const navView = btn.dataset.nav;
-    if ((navView === "home" && state.view === "home") ||
-        (navView === "learning-domains-tools" && state.view === "learning-domains-tools") ||
-        (navView === "foundations" && state.view === "foundations")) {
-      btn.classList.add("active");
-    }
   });
-
+  
+  // Mark active vertical nav button based on current view
+  if (state.view === "home") {
+    document.querySelector(`.vertical-nav-btn[data-nav="home"]`)?.classList.add("active");
+  } else if (state.view.startsWith("foundations-")) {
+    document.querySelector(`.vertical-nav-btn[data-nav="foundations"]`)?.classList.add("active");
+  } else if (state.view === "using-klpt" || state.view === "learning-domains" || 
+             state.view.startsWith("ld-") || state.view === "observation-support" || state.view === "practice-support") {
+    document.querySelector(`.vertical-nav-btn[data-nav="learning-domain-tool"]`)?.classList.add("active");
+  }
+  
+  // Update horizontal tabs visibility and active state
+  updateHorizontalTabs();
+  
   // Update horizontal tab active state
-  Array.from(document.querySelectorAll(".tab-btn")).forEach(btn => {
+  document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.classList.remove("active");
-    const tabView = btn.dataset.tab;
-    if ((tabView === "observation-support" && state.view === "home") ||
-        (tabView === "using-klpt" && state.view === "using-klpt") ||
-        (tabView === "learning-domains" && state.view === "learning-domains-tools")) {
-      btn.classList.add("active");
-    }
   });
+  
+  const activeTabBtn = document.querySelector(`.tab-btn[data-nav="${state.view}"]`);
+  if (activeTabBtn) {
+    activeTabBtn.classList.add("active");
+  }
+}
+
+function updateHorizontalTabs() {
+  const primaryTabs = document.getElementById("primaryTabs");
+  const foundationsTabs = document.getElementById("foundationsTabs");
+  const learningDomainToolTabs = document.getElementById("learningDomainToolTabs");
+  
+  if (!primaryTabs || !foundationsTabs || !learningDomainToolTabs) return;
+  
+  // Hide all submenu groups by default
+  foundationsTabs.style.display = "none";
+  learningDomainToolTabs.style.display = "none";
+  
+  // Show primary tabs bar and appropriate submenu
+  if (state.view.startsWith("foundations-")) {
+    primaryTabs.style.display = "block";
+    foundationsTabs.style.display = "flex";
+  } else if (state.view === "using-klpt" || state.view === "learning-domains" || 
+             state.view.startsWith("ld-") || state.view === "observation-support" || 
+             state.view === "practice-support") {
+    primaryTabs.style.display = "block";
+    learningDomainToolTabs.style.display = "flex";
+  } else {
+    // Home page or other - hide tabs
+    primaryTabs.style.display = "none";
+  }
 }
 
 /* ── Home ────────────────────────────────────────────────────────── */
@@ -569,165 +617,550 @@ function groupDraftsByObserver(drafts) {
 function renderHome() {
   el.main.innerHTML = `
     <section class="panel home-panel">
-      <div class="home-container">       
-
-        <!-- Video Section -->
+      <div class="home-container">
+        <!-- Acknowledgement Video -->
         <div class="home-video-section">
-          <div class="video-area">
-            <div class="video-placeholder-dark">
-              <div class="play-button">▶</div>
-              <div class="video-label">An Introduction to the KLPT</div>
-            </div>
-            <p class="video-guide-text">KLPT User Guide (downloadable PDF)</p>
+          <h3>Acknowledgement of Country</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
           </div>
         </div>
 
-        <!-- Navigation Links Grid -->
-        <div class="home-nav-grid">
-          <button type="button" class="nav-box nav-box-primary" id="foundationsBtn">
+        <!-- KLPT Video -->
+        <div class="home-video-section">
+          <h3>Kindy Learning Progression Tool Introduction</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+          </div>
+        </div>       
+      </div>
+
+       <!-- Navigation Panels (Side by side) -->
+        <div class="home-panel-grid">
+          <button type="button" class="home-panel-card" id="goFoundationsBtn">
             <h3>Foundations</h3>
-            <p>(Summary text)</p>
-            <p class="nav-link-hint">(Link)</p>
+            <p>Learn about the foundational principles of quality observations and data interpretation</p>
+            <div class="go-button">Go →</div>
           </button>
-          <button type="button" class="nav-box nav-box-primary" id="learningDomainsBtn">
-            <h3>Learning domains and observation support tool</h3>
-            <p>(Summary text)</p>
-            <p class="nav-link-hint">(Link)</p>
+          <button type="button" class="home-panel-card" id="goLearningDomainsBtn">
+            <h3>Learning Domains & Tool</h3>
+            <p>Explore the KLPT learning domains, observe behaviours, and use the observation support tool</p>
+            <div class="go-button">Go →</div>
           </button>
         </div>
 
-        <!-- Acknowledgements Box -->
-        <div class="home-content-box acknowledgements-box">
-          <h3>Acknowledgements</h3>
-          <p>(Summary text) (Link)</p>
-          <p class="secondary-text">Either link to acknowledgements page, popup text box, or drop-down text</p>
-        </div>
+      <!-- Acknowledgement Link -->
+      <div class="acknowledgement-link-section">
+        <a href="#" id="acknowledgementLink" class="acknowledgement-link">Acknowledgement of Country</a>
       </div>
     </section>
+
+    <!-- Acknowledgement Modal -->
+    <div id="acknowledgementModal" class="modal hidden">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <button type="button" class="modal-close" id="acknowledgementModalClose">&times;</button>
+        <h2>Acknowledgement of Country</h2>
+        <div class="modal-body">
+          <p>This content acknowledges the Traditional Custodians of the land and their continuing culture and connection to Country. We commit to collaborating with Indigenous communities and respecting their expertise in early childhood education and care.</p>
+        </div>
+      </div>
+    </div>
   `;
 
-  // Bind navigation buttons
-  document.getElementById("foundationsBtn")?.addEventListener("click", () => {
-    state.view = "foundations";
-    render();
-    focusMain();
+  document.getElementById("goFoundationsBtn")?.addEventListener("click", () => {
+    navigateTo("foundations-conducting");
   });
 
-  document.getElementById("learningDomainsBtn")?.addEventListener("click", () => {
-    state.view = "learning-domains-tools";
-    render();
-    focusMain();
+  document.getElementById("goLearningDomainsBtn")?.addEventListener("click", () => {
+    navigateTo("using-klpt");
+  });
+
+  // Modal functionality
+  const acknowledgementLink = document.getElementById("acknowledgementLink");
+  const acknowledgementModal = document.getElementById("acknowledgementModal");
+  const acknowledgementModalClose = document.getElementById("acknowledgementModalClose");
+
+  acknowledgementLink?.addEventListener("click", (e) => {
+    e.preventDefault();
+    acknowledgementModal?.classList.remove("hidden");
+  });
+
+  acknowledgementModalClose?.addEventListener("click", () => {
+    acknowledgementModal?.classList.add("hidden");
+  });
+
+  // Close modal when clicking overlay
+  acknowledgementModal?.addEventListener("click", (e) => {
+    if (e.target === acknowledgementModal) {
+      acknowledgementModal.classList.add("hidden");
+    }
   });
 }
 
-/* ── Using the KLPT ────────────────────────────────────────────── */
+/* ── Foundations: Conducting ────────────────────────────────────── */
+
+function renderFoundationsConducting() {
+  el.main.innerHTML = `
+    <section class="panel content-panel">
+      <h2>Conducting and Documenting Quality Observations</h2>
+      <p class="section-intro">Understand the principles of quality observation and learn how to document your observations effectively.</p>
+      
+      <div class="content-grid">
+        <!-- Video 1 -->
+        <div class="video-item">
+          <h3>Video 1: Introduction to Quality Observations</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-item">
+          <h3>Video 2: Documentation Techniques</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-item">
+          <h3>Video 3: Recording Observations</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+          </div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="video-item">
+          <h3>Video 4: Best Practices</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="support-section">
+        <h3>Support Resources</h3>
+        <a href="#" class="btn secondary">View Support Resources</a>
+      </div>
+    </section>
+  `;
+}
+
+/* ── Foundations: Analysing ────────────────────────────────────── */
+
+function renderFoundationsAnalysing() {
+  el.main.innerHTML = `
+    <section class="panel content-panel">
+      <h2>Analysing and Interpreting Observational Data</h2>
+      <p class="section-intro">Learn how to analyse observations and interpret data to understand children's learning and development.</p>
+      
+      <div class="content-grid">
+        <!-- Video 1 -->
+        <div class="video-item">
+          <h3>Video 1: Introduction to Data Analysis</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-item">
+          <h3>Video 2: Pattern Recognition</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-item">
+          <h3>Video 3: Making Inferences</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+          </div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="video-item">
+          <h3>Video 4: Documentation & Reporting</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="support-section">
+        <h3>Support Resources</h3>
+        <a href="#" class="btn secondary">View Support Resources</a>
+      </div>
+    </section>
+  `;
+}
+
+/* ── Learning Domain & Tool: Using KLPT ────────────────────────── */
 
 function renderUsingKLPT() {
   el.main.innerHTML = `
-    <section class="panel info-panel">
+    <section class="panel content-panel">
       <h2>Using the KLPT</h2>
-      <p class="info-intro">
-        The KLPT in everyday practice is a tool for educators to systematically observe and document children's 
-        learning across the five key learning domains. This guide shows you how to get started and make the most 
-        of the tool's features.
-      </p>
+      <p class="section-intro">A comprehensive guide to using the Kindy Learning Progression Tool in your daily practice.</p>
       
       <div class="video-section">
-        <div class="video-placeholder">
-          <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="225" fill="#e8eef7"/>
-            <circle cx="200" cy="112.5" r="40" fill="#0077c1" opacity="0.8"/>
-            <polygon points="185,95 185,130 220,112.5" fill="white"/>
-          </svg>
-          <p class="video-label">Watch the KLPT Introduction</p>
+        <h3>Using the KLPT</h3>
+        <div class="video-wrapper">
+          <iframe width="100%" height="315" 
+            src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+            title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen="">
+          </iframe>
         </div>
         <div class="video-links">
-          <a href="#transcript" class="link-btn">View Transcript</a>
-          <a href="./klpt-user-guide.pdf" download class="link-btn primary">Download PDF Guide</a>
+          <a href="#" class="link-icon">📄 Transcript</a>
+          <a href="#" class="link-icon">📖 User Guide</a>
         </div>
       </div>
-      
-      <div class="info-content">
-        <h3>Key Features</h3>
-        <ul>
-          <li><strong>Learn the domains:</strong> Understand the five key learning domains and how they develop</li>
-          <li><strong>Observe behaviours:</strong> Identify and document specific observable behaviours</li>
-          <li><strong>Record evidence:</strong> Capture contextual notes and observations</li>
-          <li><strong>Generate reports:</strong> Create summaries and learning progression statements</li>
-          <li><strong>Save your work:</strong> Store observations securely and revisit them anytime</li>
-        </ul>
+
+      <div class="domains-section">
+        <h3>The KLPT Learning Domains</h3>
+        <p>The KLPT is built around five key learning domains that reflect how children develop and learn:</p>
+        
+        <div class="domain-cards">
+          <div class="domain-card">
+            <h4>Language and Literacy</h4>
+            <p>Communication, vocabulary, comprehension, and early literacy skills development.</p>
+          </div>
+          <div class="domain-card">
+            <h4>Executive Function</h4>
+            <p>Self-regulation, planning, memory, and the ability to manage and organize learning.</p>
+          </div>
+          <div class="domain-card">
+            <h4>Social & Emotional Learning</h4>
+            <p>Emotional awareness, relationships, empathy, and developing social skills.</p>
+          </div>
+          <div class="domain-card">
+            <h4>Physicality</h4>
+            <p>Gross and fine motor skills, coordination, and physical awareness development.</p>
+          </div>
+          <div class="domain-card">
+            <h4>Mathematics and Numeracy</h4>
+            <p>Mathematical thinking, number sense, patterns, and problem-solving skills.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="find-out-more-section">
+        <h3>Find Out More About the KLPT</h3>
+        <p>Explore each learning domain in detail to understand the progression of development and how to support learners effectively.</p>
+        <a href="#" class="btn primary">Explore Learning Domains</a>
       </div>
     </section>
   `;
 }
 
-/* ── Learning Domains & Tools ────────────────────────────────────── */
+/* ── Learning Domains Overview ──────────────────────────────────── */
 
-function renderLearningDomainsTools() {
+function renderLearningDomains() {
   el.main.innerHTML = `
-    <section class="panel">
-      <h2>Learning Domains & Tool Resources</h2>
-      <p class="section-subtitle">Explore the five key learning domains and access support resources.</p>
+    <section class="panel content-panel">
+      <h2>Learning Domains</h2>
+      <p class="section-intro">Explore in detail the five learning domains assessed by the KLPT. Select a domain to view resources and guidance.</p>
       
-      <div class="domains-resources">
-        <div class="resource-card">
-          <h3>📚 Language and Literacy</h3>
-          <p>Develops from birth through communication, vocabulary building, and early literacy skills.</p>
-        </div>
-        <div class="resource-card">
-          <h3>🧠 Executive Function</h3>
-          <p>Building self-regulation, planning, memory, and the ability to manage learning.</p>
-        </div>
-        <div class="resource-card">
-          <h3>💝 Social and Emotional Learning</h3>
-          <p>Growing emotional awareness, relationships, empathy, and social skills.</p>
-        </div>
-        <div class="resource-card">
-          <h3>🏃 Physicality</h3>
-          <p>Development of gross and fine motor skills, coordination, and physical awareness.</p>
-        </div>
-        <div class="resource-card">
-          <h3>🔢 Mathematics and Numeracy</h3>
-          <p>Building mathematical thinking, number sense, and problem-solving skills.</p>
-        </div>
-      </div>
-      
-      <div class="action-row" style="margin-top:24px;">
-        <button class="btn primary" id="startObservationBtn">Start an Observation</button>
+      <div class="domain-cards-grid">
+        <button type="button" class="domain-card-btn" id="ldLanguageLiteracyBtn">
+          <h3>Language and Literacy</h3>
+          <p>Communication, vocabulary, comprehension, and early literacy development</p>
+          <div class="arrow">→</div>
+        </button>
+        <button type="button" class="domain-card-btn" id="ldExecutiveFunctionBtn">
+          <h3>Executive Function</h3>
+          <p>Self-regulation, planning, memory, and learning management</p>
+          <div class="arrow">→</div>
+        </button>
+        <button type="button" class="domain-card-btn" id="ldSocialEmotionalBtn">
+          <h3>Social & Emotional Learning</h3>
+          <p>Emotional awareness, relationships, empathy, and social development</p>
+          <div class="arrow">→</div>
+        </button>
+        <button type="button" class="domain-card-btn" id="ldPhysicalityBtn">
+          <h3>Physicality</h3>
+          <p>Motor skills, coordination, and physical development</p>
+          <div class="arrow">→</div>
+        </button>
+        <button type="button" class="domain-card-btn" id="ldMathematicsBtn">
+          <h3>Mathematics and Numeracy</h3>
+          <p>Mathematical thinking, number sense, and problem-solving</p>
+          <div class="arrow">→</div>
+        </button>
       </div>
     </section>
   `;
-  
-  document.getElementById("startObservationBtn")?.addEventListener("click", () => {
-    showCodeSelectionModal();
-  });
+
+  document.getElementById("ldLanguageLiteracyBtn")?.addEventListener("click", () => navigateTo("ld-language-literacy"));
+  document.getElementById("ldExecutiveFunctionBtn")?.addEventListener("click", () => navigateTo("ld-executive-function"));
+  document.getElementById("ldSocialEmotionalBtn")?.addEventListener("click", () => navigateTo("ld-social-emotional"));
+  document.getElementById("ldPhysicalityBtn")?.addEventListener("click", () => navigateTo("ld-physicality"));
+  document.getElementById("ldMathematicsBtn")?.addEventListener("click", () => navigateTo("ld-mathematics"));
 }
 
-/* ── Foundations ───────────────────────────────────────────────── */
+/* ── Language and Literacy ─────────────────────────────────────── */
 
-function renderFoundations() {
+function renderLDLanguageLiteracy() {
   el.main.innerHTML = `
-    <section class="panel">
-      <h2>Foundations</h2>
-      <p class="section-subtitle">Learn about the foundational principles of child development and learning.</p>
+    <section class="panel content-panel">
+      <h2>Language and Literacy</h2>
+      <p class="section-intro">Explore how children develop language, literacy, and communication skills from birth.</p>
       
-      <div class="foundations-content">
-        <div class="foundation-section">
-          <h3>Development Progressions</h3>
-          <p>Understanding how children develop across different domains and what progression looks like at different ages and stages.</p>
-          <a href="#" class="link-btn">Learn More</a>
+      <div class="content-grid">
+        <div class="video-item">
+          <h3>KLPT Home Languages</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+            <a href="#" class="link-icon">📄 Support Resources</a>
+          </div>
         </div>
-        
-        <div class="foundation-section">
-          <h3>Frequently Asked Questions</h3>
-          <p>Find answers to common questions about the KLPT, child development, and practical implementation.</p>
-          <a href="#" class="link-btn">Visit FAQ</a>
+
+        <div class="video-item">
+          <h3>KLPT Learning Areas</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+            <a href="#" class="link-icon">📄 Support Resources</a>
+          </div>
         </div>
-        
-        <div class="foundation-section">
-          <h3>Contact us</h3>
-          <p>Need additional support or have questions about the tool? Get in touch with our team.</p>
-          <a href="#" class="link-btn">Contact Support</a>
+      </div>
+    </section>
+  `;
+}
+
+/* ── Executive Function ─────────────────────────────────────────── */
+
+function renderLDExecutiveFunction() {
+  el.main.innerHTML = `
+    <section class="panel content-panel">
+      <h2>Executive Function</h2>
+      <p class="section-intro">Understand how children develop self-regulation, planning, and executive function skills.</p>
+      
+      <div class="content-grid">
+        <div class="video-item">
+          <h3>Executive Function Development</h3>
+          <div class="video-wrapper">
+            <iframe width="100%" height="315" 
+              src="https://www.youtube.com/embed/P3_BTe-MtrY?list=PLgjv5epyrnQCmc9zYz2cywApNjNZDfapD" 
+              title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen="">
+            </iframe>
+          </div>
+          <div class="video-links">
+            <a href="#" class="link-icon">📄 Transcript</a>
+            <a href="#" class="link-icon">📄 Factsheet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+/* ── Social & Emotional Learning ────────────────────────────────── */
+
+function renderLDSocialEmotional() {
+  el.main.innerHTML = `
+    <section class="panel content-panel">
+      <h2>Social & Emotional Learning</h2>
+      <p class="section-intro">Explore how children develop emotional awareness, relationships, and social skills.</p>
+      
+      <div class="empty-state">
+        <p>Content coming soon</p>
+      </div>
+    </section>
+  `;
+}
+
+/* ── Physicality ────────────────────────────────────────────────── */
+
+function renderLDPhysicality() {
+  el.main.innerHTML = `
+    <section class="panel content-panel">
+      <h2>Physicality</h2>
+      <p class="section-intro">Understand the development of motor skills, coordination, and physical awareness.</p>
+      
+      <div class="empty-state">
+        <p>Content coming soon</p>
+      </div>
+    </section>
+  `;
+}
+
+/* ── Mathematics and Numeracy ───────────────────────────────────── */
+
+function renderLDMathematics() {
+  el.main.innerHTML = `
+    <section class="panel content-panel">
+      <h2>Mathematics and Numeracy</h2>
+      <p class="section-intro">Explore how children develop mathematical thinking, number sense, and problem-solving skills.</p>
+      
+      <div class="empty-state">
+        <p>Content coming soon</p>
+      </div>
+    </section>
+  `;
+}
+
+/* ── Practice Support ───────────────────────────────────────────── */
+
+function renderPracticeSupport() {
+  el.main.innerHTML = `
+    <section class="panel content-panel">
+      <h2>Practice Support</h2>
+      <p class="section-intro">Download resources to support your practice across all learning domains.</p>
+      
+      <div class="support-resources">
+        <div class="resource-section">
+          <h3>Professional Reflection</h3>
+          <ul class="resource-list">
+            <li><a href="#" download class="resource-link"><span class="doc-icon pdf-download">📥</span> Professional Reflection Guide</a></li>
+            <li><a href="#" download class="resource-link"><span class="doc-icon pdf-download">📥</span> Reflection Questions</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h3>Language and Literacy</h3>
+          <ul class="resource-list">
+            <li><a href="#" download class="resource-link"><span class="doc-icon pdf-download">📥</span> User Guide</a></li>
+            <li><a href="#" download class="resource-link"><span class="doc-icon pdf-download">📥</span> Practice Support Guide</a></li>
+            <li><a href="#" download class="resource-link"><span class="doc-icon excel">📊</span> Factsheet</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h3>Executive Function</h3>
+          <ul class="resource-list">
+            <li><a href="#" download class="resource-link"><span class="doc-icon pdf-download">📥</span> User Guide</a></li>
+            <li><a href="#" download class="resource-link"><span class="doc-icon pdf-download">📥</span> Practice Support Guide</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h3>Social and Emotional Learning</h3>
+          <ul class="resource-list">
+            <li><a href="#" download class="resource-link"><span class="doc-icon pdf-download">📥</span> Practice Support Guide</a></li>
+            <li><a href="#" download class="resource-link"><span class="doc-icon excel">📊</span> Factsheet</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h3>Physicality</h3>
+          <ul class="resource-list">
+            <li><a href="#" download class="resource-link"><span class="doc-icon pdf-download">📥</span> User Guide</a></li>
+            <li><a href="#" download class="resource-link"><span class="doc-icon excel">📊</span> Factsheet</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h3>Mathematics</h3>
+          <ul class="resource-list">
+            <li><a href="#" download class="resource-link"><span class="doc-icon pdf-download">📥</span> Practice Support Guide</a></li>
+            <li><a href="#" download class="resource-link"><span class="doc-icon excel">📊</span> Factsheet</a></li>
+          </ul>
         </div>
       </div>
     </section>

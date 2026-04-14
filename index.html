@@ -27,15 +27,24 @@
         <nav class="vertical-nav" aria-label="Main navigation">
           <button type="button" class="vertical-nav-btn" data-nav="home" title="Home">Home</button>
           <button type="button" class="vertical-nav-btn" data-nav="foundations" title="Foundations">Foundations</button>
-          <button type="button" class="vertical-nav-btn" data-nav="learning-domains-tools" title="Learning Domains & Tools">Learning Domains & Tools</button>
+          <button type="button" class="vertical-nav-btn" data-nav="learning-domain-tool" title="Learning Domain & Tool">Learning Domain & Tool</button>
         </nav>
       </div>
       
-      <nav id="primaryTabs" class="primary-tabs" aria-label="Primary sections">
-        <button type="button" class="tab-btn" data-tab="using-klpt">Using the KLPT</button>
-        <button type="button" class="tab-btn" data-tab="learning-domains">Learning Domains</button>
-        <button type="button" class="tab-btn" data-tab="observation-support">Observation Support Tool</button>
-        <button type="button" class="tab-btn" data-tab="practice-support">Practice Support</button>
+      <nav id="primaryTabs" class="primary-tabs" aria-label="Submenu sections" style="display:none;">
+        <!-- Foundations submenu -->
+        <div id="foundationsTabs" class="submenu-group" style="display:none;">
+          <button type="button" class="tab-btn" data-nav="foundations-conducting">Conducting and Documenting Quality Observations</button>
+          <button type="button" class="tab-btn" data-nav="foundations-analysing">Analysing and Interpreting Observational Data</button>
+        </div>
+        
+        <!-- Learning Domain & Tool submenu -->
+        <div id="learningDomainToolTabs" class="submenu-group" style="display:none;">
+          <button type="button" class="tab-btn" data-nav="using-klpt">Using the KLPT</button>
+          <button type="button" class="tab-btn" data-nav="learning-domains">Learning Domains</button>
+          <button type="button" class="tab-btn" data-nav="observation-support">Observation Support Tool</button>
+          <button type="button" class="tab-btn" data-nav="practice-support">Practice Support</button>
+        </div>
       </nav>
       
       <div id="sessionMeta" class="session-meta hidden"></div>
